@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Info Lookup</title>
+</head>
+<body>
+    <h1>Stock Info Lookup</h1>
+
+    <form method="POST">
+        <label for="symbol">Enter Stock Symbol (e.g., RELIANCE.NS):</label>
+        <input type="text" id="symbol" name="symbol" required>
+        <button type="submit">Get Info</button>
+    </form>
+
+    {% if stock %}
+        {% if stock.error %}
+            <p style="color:red;">Error: {{ stock.error }}</p>
+        {% else %}
+            <h2>Results for {{ stock.name }}</h2>
+            <ul>
+                <li><strong>Current Price:</strong> ₹{{ stock.price }}</li>
+                <li><strong>Market Cap:</strong> ₹{{ stock.marketCap }}</li>
+                <li><strong>Sector:</strong> {{ stock.sector }}</li>
+                <li><strong>Day High:</strong> ₹{{ stock.dayHigh }}</li>
+                <li><strong>Day Low:</strong> ₹{{ stock.dayLow }}</li>
+            </ul>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
